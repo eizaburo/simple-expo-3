@@ -1,20 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+
+import Home from './screens/Home';
+import Contact from './screens/Contact';
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { AntDesign } from '@expo/vector-icons';
+
+const tab = createBottomTabNavigator();
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <tab.Navigator>
+        <tab.Screen
+          name="Home"
+          component={Home}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <AntDesign name='home' color={color} size={size} />
+            ),
+          }}
+        />
+        <tab.Screen
+          name="Contact"
+          component={Contact}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <AntDesign name='mail' color={color} size={size} />
+            ),
+          }}
+        />
+      </tab.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
 });
